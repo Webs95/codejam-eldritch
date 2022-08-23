@@ -1,18 +1,16 @@
-import image from './images/lazy.png';
+import './style.scss'; // import styles
+import ancients from './assets/Ancients/index';
 
-const createImage = (src) => new Promise((res, rej) => {
-  const img = new Image();
-  img.onload = () => res(img);
-  img.onerror = rej;
-  img.src = src;
-});
+const container = document.querySelector('.container');
+const firstCard = document.querySelector('.ancienst__card-first');
+const secondCard = document.querySelector('.ancienst__card-second');
+const therdCard = document.querySelector('.ancienst__card-therd');
+const fourthCard = document.querySelector('.ancienst__card-fourth');
 
-async function render() {
-  const subHeader = document.createElement('h2');
-  subHeader.innerHTML = 'This elements was created by js';
-  const myImage = await createImage(image);
-  document.body.appendChild(subHeader);
-  document.body.appendChild(myImage);
-}
+console.log(ancients);
 
-render();
+firstCard.style.backgroundImage = `url(${ancients.azathoth})`;
+secondCard.style.backgroundImage = `url(${ancients.cthulhu})`;
+therdCard.style.backgroundImage = `url(${ancients.iogSothoth})`;
+fourthCard.style.backgroundImage = `url(${ancients.shubNiggurath})`;
+
