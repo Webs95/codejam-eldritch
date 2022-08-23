@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
 @mixin deck {
   width: 206px;
   height: 284px;
@@ -16,10 +18,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Creepster', cursive;
 }
 
 html {
   color: #fff;
+  font-size: 10px;
 }
 
 .container {
@@ -34,6 +38,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 2rem;
 }
 
 .ancienst-wrapper {
@@ -95,22 +100,27 @@ html {
     align-items: center;
     width: 35px;
     height: 35px;
-    border: 1px solid white;
-    border-radius: 50%;
+    border: 1px solid rgba(155, 146, 146, 0.482);
+    border-radius: 30%;
     &-green {
-      background-color: green;
+      background-color: rgb(44, 87, 44);
     }
     &-brown {
-      background-color: brown;
+      background-color: rgb(161, 165, 42);
     }
     &-blue {
-      background-color: blue;
+      background-color: rgb(73, 73, 207);
     }
   }
 }
 
 .btn {
+  transition: all .3s ease;
   cursor: pointer;
+  font-size: 2rem;
+  &:active {
+    transform: scale(1.04)
+  }
 }
 
 .deck {
