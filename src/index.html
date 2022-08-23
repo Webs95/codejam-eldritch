@@ -9,43 +9,47 @@
   <body>
     <div class="container">
       <div class="ancienst-wrapper">
-        <div class="ancienst__card ancienst__card-first ancienst__card-active"></div>
+        <div
+          class="ancienst__card ancienst__card-first ancienst__card-active"
+        ></div>
         <div class="ancienst__card ancienst__card-second"></div>
         <div class="ancienst__card ancienst__card-therd"></div>
         <div class="ancienst__card ancienst__card-fourth"></div>
       </div>
       <div class="difficult-wrapper">
         <button class="difficult__btn btn difficult__btn-active" id="easy">
-          Низкая
+          Easy
         </button>
-        <button class="difficult__btn btn" id="normal">Средняя</button>
-        <button class="difficult__btn btn" id="hard">Высокая</button>
+        <button class="difficult__btn btn" id="normal">Medium</button>
+        <button class="difficult__btn btn" id="hard">Hard</button>
       </div>
       <div class="deck-wrapper">
-        <button class="mix-deck btn">Замешать колоду</button>
+        <button class="mix-deck btn">Shuffle the deck</button>
         <div class="current-state">
           <div class="stage">
-            <span class="stage-text">Первая стадия</span>
+            <span class="stage-text">Firts stage</span>
             <div class="dots">
-              <div class="dot dot-green">0</div>
-              <div class="dot dot-brown">0</div>
-              <div class="dot dot-blue">0</div>
+              <div class="dot dot-stage1 dot-green" id="dot-stage1-green">
+                0
+              </div>
+              <div class="dot dot-stage1 dot-brown" id="dot-stage1-brown">0</div>
+              <div class="dot dot-stage1 dot-blue" id="dot-stage1-blue">0</div>
             </div>
           </div>
           <div class="stage">
-            <span class="stage-text">Вторая стадия</span>
+            <span class="stage-text">Second stage</span>
             <div class="dots">
-              <div class="dot dot-green">0</div>
-              <div class="dot dot-brown">0</div>
-              <div class="dot dot-blue">0</div>
+              <div class="dot dot-stage2 dot-green" id="dot-stage2-green">0</div>
+              <div class="dot dot-stage2 dot-brown" id="dot-stage2-brown">0</div>
+              <div class="dot dot-stage2 dot-blue" id="dot-stage2-blue">0</div>
             </div>
           </div>
           <div class="stage">
-            <span class="stage-text">Третья стадия</span>
+            <span class="stage-text">Therd stage</span>
             <div class="dots">
-              <div class="dot dot-green">0</div>
-              <div class="dot dot-brown">0</div>
-              <div class="dot dot-blue">0</div>
+              <div class="dot dot-stage3 dot-green" id="dot-stage3-green">0</div>
+              <div class="dot dot-stage3 dot-brown" id="dot-stage3-brown">0</div>
+              <div class="dot dot-stage3 dot-blue" id="dot-stage3-blue">0</div>
             </div>
           </div>
         </div>
