@@ -2,6 +2,7 @@ import './style.scss'; // import styles
 import ancients from './assets/Ancients/index';
 import ancientsData from './data/ancients';
 // Variables
+const ancientsWrapper = document.querySelector('.ancienst-wrapper');
 // Ancients cards
 const firstCard = document.querySelector('.ancienst__card-first');
 const secondCard = document.querySelector('.ancienst__card-second');
@@ -28,22 +29,61 @@ function getAncient(data) {
   fourthCard.style.backgroundImage = `url(${data.shubNiggurath})`;
 }
 
-function getStages(data) {
-  let index = 0;
-  // First
-  stageOneGreenDot.textContent = `${data[0].firstStage.greenCards}`;
-  stageOneBrownDot.textContent = `${data[0].firstStage.brownCards}`;
-  stageOneBlueDot.textContent = `${data[0].firstStage.blueCards}`;
-  // Second
-  stageTwoGreenDot.textContent = `${data[0].secondStage.greenCards}`;
-  stageTwoBrownDot.textContent = `${data[0].secondStage.brownCards}`;
-  stageTwoBlueDot.textContent = `${data[0].secondStage.blueCards}`;
-  //Therd
-  stageThreeGreenDot.textContent = `${data[0].thirdStage.greenCards}`;
-  stageThreeBrownDot.textContent = `${data[0].thirdStage.brownCards}`;
-  stageThreeBlueDot.textContent = `${data[0].thirdStage.blueCards}`;
-  console.log(data);
+function getStages(event, data) {
+  if (event.target.classList.contains('ancienst__card-first')) {
+    // First
+    stageOneGreenDot.textContent = `${data[0].firstStage.greenCards}`;
+    stageOneBrownDot.textContent = `${data[0].firstStage.brownCards}`;
+    stageOneBlueDot.textContent = `${data[0].firstStage.blueCards}`;
+    // Second
+    stageTwoGreenDot.textContent = `${data[0].secondStage.greenCards}`;
+    stageTwoBrownDot.textContent = `${data[0].secondStage.brownCards}`;
+    stageTwoBlueDot.textContent = `${data[0].secondStage.blueCards}`;
+    // Therd
+    stageThreeGreenDot.textContent = `${data[0].thirdStage.greenCards}`;
+    stageThreeBrownDot.textContent = `${data[0].thirdStage.brownCards}`;
+    stageThreeBlueDot.textContent = `${data[0].thirdStage.blueCards}`;
+  } else if (event.target.classList.contains('ancienst__card-second')) {
+    // First
+    stageOneGreenDot.textContent = `${data[1].firstStage.greenCards}`;
+    stageOneBrownDot.textContent = `${data[1].firstStage.brownCards}`;
+    stageOneBlueDot.textContent = `${data[1].firstStage.blueCards}`;
+    // Second
+    stageTwoGreenDot.textContent = `${data[1].secondStage.greenCards}`;
+    stageTwoBrownDot.textContent = `${data[1].secondStage.brownCards}`;
+    stageTwoBlueDot.textContent = `${data[1].secondStage.blueCards}`;
+    // Therd
+    stageThreeGreenDot.textContent = `${data[1].thirdStage.greenCards}`;
+    stageThreeBrownDot.textContent = `${data[1].thirdStage.brownCards}`;
+    stageThreeBlueDot.textContent = `${data[1].thirdStage.blueCards}`;
+  } else if (event.target.classList.contains('ancienst__card-therd')) {
+    // First
+    stageOneGreenDot.textContent = `${data[2].firstStage.greenCards}`;
+    stageOneBrownDot.textContent = `${data[2].firstStage.brownCards}`;
+    stageOneBlueDot.textContent = `${data[2].firstStage.blueCards}`;
+    // Second
+    stageTwoGreenDot.textContent = `${data[2].secondStage.greenCards}`;
+    stageTwoBrownDot.textContent = `${data[2].secondStage.brownCards}`;
+    stageTwoBlueDot.textContent = `${data[2].secondStage.blueCards}`;
+    // Therd
+    stageThreeGreenDot.textContent = `${data[2].thirdStage.greenCards}`;
+    stageThreeBrownDot.textContent = `${data[2].thirdStage.brownCards}`;
+    stageThreeBlueDot.textContent = `${data[2].thirdStage.blueCards}`;
+  } else if (event.target.classList.contains('ancienst__card-fourth')) {
+    // First
+    stageOneGreenDot.textContent = `${data[3].firstStage.greenCards}`;
+    stageOneBrownDot.textContent = `${data[3].firstStage.brownCards}`;
+    stageOneBlueDot.textContent = `${data[3].firstStage.blueCards}`;
+    // Second
+    stageTwoGreenDot.textContent = `${data[3].secondStage.greenCards}`;
+    stageTwoBrownDot.textContent = `${data[3].secondStage.brownCards}`;
+    stageTwoBlueDot.textContent = `${data[3].secondStage.blueCards}`;
+    // Therd
+    stageThreeGreenDot.textContent = `${data[3].thirdStage.greenCards}`;
+    stageThreeBrownDot.textContent = `${data[3].thirdStage.brownCards}`;
+    stageThreeBlueDot.textContent = `${data[3].thirdStage.blueCards}`;
+  }
 }
+ancientsWrapper.addEventListener('click', (e) => getStages(e, ancientsData));
 
 getAncient(ancients);
-getStages(ancientsData);
