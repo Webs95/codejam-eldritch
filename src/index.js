@@ -144,31 +144,31 @@ ancientsWrapper.addEventListener('click', (e) => {
   if (target === 'azathoth') {
     getStages(ancientsData, target);
     // Toggle active style
-    azathoth.classList.add('ancienst__card-active');
-    cthulhu.classList.remove('ancienst__card-active');
-    iogSothoth.classList.remove('ancienst__card-active');
-    shubNiggurath.classList.remove('ancienst__card-active');
+    // azathoth.classList.add('ancienst__card-active');
+    // cthulhu.classList.remove('ancienst__card-active');
+    // iogSothoth.classList.remove('ancienst__card-active');
+    // shubNiggurath.classList.remove('ancienst__card-active');
   } else if (target === 'cthulhu') {
     getStages(ancientsData, target);
     // Toggle active style
-    azathoth.classList.remove('ancienst__ancienst__card-active');
-    cthulhu.classList.add('ancienst__card-active');
-    iogSothoth.classList.remove('ancienst__card-active');
-    shubNiggurath.classList.remove('ancienst__card-active');
+    // azathoth.classList.remove('ancienst__ancienst__card-active');
+    // cthulhu.classList.add('ancienst__card-active');
+    // iogSothoth.classList.remove('ancienst__card-active');
+    // shubNiggurath.classList.remove('ancienst__card-active');
   } else if (target === 'iogSothoth') {
     getStages(ancientsData, target);
     // Toggle active style
-    azathoth.classList.remove('ancienst__card-active');
-    cthulhu.classList.remove('ancienst__card-active');
-    iogSothoth.classList.add('ancienst__card-active');
-    shubNiggurath.classList.remove('ancienst__card-active');
+    // azathoth.classList.remove('ancienst__card-active');
+    // cthulhu.classList.remove('ancienst__card-active');
+    // iogSothoth.classList.add('ancienst__card-active');
+    // shubNiggurath.classList.remove('ancienst__card-active');
   } else if (target === 'shubNiggurath') {
     getStages(ancientsData, target);
     // Toggle active style
-    azathoth.classList.remove('ancienst__card-active');
-    cthulhu.classList.remove('ancienst__card-active');
-    iogSothoth.classList.remove('ancienst__card-active');
-    shubNiggurath.classList.add('ancienst__card-active');
+    // azathoth.classList.remove('ancienst__card-active');
+    // cthulhu.classList.remove('ancienst__card-active');
+    // iogSothoth.classList.remove('ancienst__card-active');
+    // shubNiggurath.classList.add('ancienst__card-active');
   }
 });
 
@@ -186,7 +186,7 @@ function setFirstStage(tarckerData, shuffleDeck, currAnc) {
   } else if (currAnc === 'shubNiggurath') {
     currIndex = 3;
   }
-  // How much curds we needed for first stage
+  // How much cards we needed for first stage
   // Green Cards
   let firstStageGreenCardsMaxVal = tarckerData[currIndex].firstStage.greenCards;
   let firstStageGreenCardsDeck =
@@ -225,7 +225,7 @@ function setSecondStage(tarckerData, shuffleDeck, currAnc) {
   } else if (currAnc === 'shubNiggurath') {
     currIndex = 3;
   }
-  // How much curds we needed for first stage
+  // How much cards we needed for first stage
   // Green Cards
   let greenCardsMaxVal = tarckerData[currIndex].secondStage.greenCards;
   let greenCardsDeck =
@@ -264,7 +264,7 @@ function setThirdStage(tarckerData, shuffleDeck, currAnc) {
   } else if (currAnc === 'shubNiggurath') {
     currIndex = 3;
   }
-  // How much curds we needed for first stage
+  // How much cards we needed for first stage
   // Green Cards
   let greenCardsMaxVal = tarckerData[currIndex].thirdStage.greenCards;
   let greenCardsDeck =
@@ -321,12 +321,12 @@ const createDataForTracker = (dataAnc, currAnc) => {
   ];
 };
 
-const minusCardsFromDacker = (tData, cardColor) => {
+const minusCardsFromDacker = (tData, cardColor = '') => {
   if (cardColor === 'green') {
     firstStage.children[0].textContent = tData[0][0] -= 1;
   }
   if (cardColor === 'brown') {
-    firstStage.children[1].textContent = tData[0][1] -= 1;
+    firstStage.children[1].textContent = tData[0][1] -= 1;  // <---= LOOK AT THIS SHIT!!!!!
   }
   if (cardColor === 'blue') {
     firstStage.children[2].textContent = tData[0][2] -= 1;
@@ -336,9 +336,9 @@ const minusCardsFromDacker = (tData, cardColor) => {
 function getLastCard(miniDeck) {
   lastCardMiniDeck = miniDeck.pop();
   colorLastCard = lastCardMiniDeck.color;
-  console.log(lastCardMiniDeck.color);
-  lastCardMiniDeck === undefined 
-    ? (deck.style.opacity = '0.6')
+  // console.log(lastCardMiniDeck.color);
+  lastCardMiniDeck.color === undefined
+    ? (deck.style.opacity = '0.5')
     : (lastCard.style.backgroundImage = `url(${lastCardMiniDeck.cardFace})`);
 }
 
