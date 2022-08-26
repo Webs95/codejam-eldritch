@@ -43,7 +43,7 @@ const ancientsData = [
   },
   {
     id: 'iogSothoth',
-    name: 'iogSothoth',
+    name: 'iog Sothoth',
     cardFace: Ancients.iogSothoth,
     firstStage: {
       greenCards: 0,
@@ -63,7 +63,7 @@ const ancientsData = [
   },
   {
     id: 'shubNiggurath',
-    name: 'shubNiggurath',
+    name: 'shub Niggurath',
     cardFace: Ancients.shubNiggurath,
     firstStage: {
       greenCards: 1,
