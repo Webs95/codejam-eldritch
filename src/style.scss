@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
 
 @mixin deck {
-  width: 206px;
-  height: 284px;
+  width: 326px;
+  height: 425px;
   background-position: 50%;
   background-size: contain;
   background-repeat: no-repeat;
@@ -10,7 +10,7 @@
   transition: all .3s ease;
   &:hover {
     transform: scale(1.1);
-    box-shadow: 0px 0px 7px 10px rgba(238, 210, 100, 0.5);
+    // box-shadow: 0px 0px 7px 10px rgba(238, 210, 100, 0.5);
   }
 }
 
@@ -49,8 +49,8 @@ html {
 }
 
 .ancienst__card {
-  width: 272px;
-  height: 345px;
+  width: 326px;
+  height: 425px;
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
@@ -115,21 +115,30 @@ html {
 }
 
 .btn {
-  transition: all .3s ease;
+  transition: all .2s ease;
   cursor: pointer;
   font-size: 2rem;
   &:active {
-    transform: scale(1.04)
+    transform: scale(1.04);
   }
+  &:hover{
+    color: purple;
+  }
+}
+
+.cards-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
 }
 
 .deck {
   @include deck;
-  background-image: url(./assets/mythicCardBackground.png);
+  background-image: url(./assets/mythicCardBackground.jpg);
   cursor: pointer;
 }
 
 .last-card {
   @include deck;
-  background-image: url(./assets/mythicCardBackground.png);
+  background-image: url(./assets/mythicCardBackground.jpg);
 }
