@@ -9,25 +9,21 @@ import cardsDataGreen from './data/mythicCards/green';
 const lastCard = document.querySelector('.last-card');
 const deck = document.querySelector('.deck');
 const ancientsWrapper = document.querySelector('.ancienst-wrapper');
+const nameAncient = document.querySelector('.name-ancient');
+const difficultyBtnsWrapper = document.querySelector('.difficult-wrapper');
+const shuffleBtnWrapper = document.querySelector('.shuffle-wrapper');
+const deckWrapper = document.querySelector('.deck-wrapper');
+const mixDeck = document.querySelector('.mix-deck');
+// Stages Fathers
+const firstStage = document.querySelector('.first-stage');
+const secondStage = document.querySelector('.second-stage');
+const thirdStage = document.querySelector('.third-stage');
 // Ancients cards
-const firstCard = document.querySelector('.ancienst__card-first');
-const secondCard = document.querySelector('.ancienst__card-second');
-const therdCard = document.querySelector('.ancienst__card-therd');
-const fourthCard = document.querySelector('.ancienst__card-fourth');
-// Stages
-// Stage One
-const stageOneGreenDot = document.querySelector('#dot-stage1-green');
-const stageOneBrownDot = document.querySelector('#dot-stage1-brown');
-const stageOneBlueDot = document.querySelector('#dot-stage1-blue');
-// Stage Two
-const stageTwoGreenDot = document.querySelector('#dot-stage2-green');
-const stageTwoBrownDot = document.querySelector('#dot-stage2-brown');
-const stageTwoBlueDot = document.querySelector('#dot-stage2-blue');
-// Stage Three
-const stageThreeGreenDot = document.querySelector('#dot-stage3-green');
-const stageThreeBrownDot = document.querySelector('#dot-stage3-brown');
-const stageThreeBlueDot = document.querySelector('#dot-stage3-blue');
-// Sort Cards Difficulty
+const azathoth = document.getElementById('azathoth');
+const cthulhu = document.getElementById('cthulhu');
+const iogSothoth = document.getElementById('iogSothoth');
+const shubNiggurath = document.getElementById('shubNiggurath');
+// Sort Cards
 const sortedCards = [
   {
     difficultyCards: {
@@ -50,12 +46,19 @@ const sortedCards = [
     },
   },
 ];
-// Render ancients on page
-function getAncient(data) {
-  firstCard.style.backgroundImage = `url(${data.azathoth})`;
-  secondCard.style.backgroundImage = `url(${data.cthulhu})`;
-  therdCard.style.backgroundImage = `url(${data.iogSothoth})`;
-  fourthCard.style.backgroundImage = `url(${data.shubNiggurath})`;
+// Done deck
+let doneDeck = {
+  firstStage: [],
+  secondStage: [],
+  thirdStage: [],
+};
+let colorLastCard = '';
+// Render ancients cards on page
+function renderAncient(data) {
+  azathoth.style.backgroundImage = `url(${data.azathoth})`;
+  cthulhu.style.backgroundImage = `url(${data.cthulhu})`;
+  iogSothoth.style.backgroundImage = `url(${data.iogSothoth})`;
+  shubNiggurath.style.backgroundImage = `url(${data.shubNiggurath})`;
 }
 // Sort the deck by Easy difficulty
 function sortCardsDifficultyEasy(blue, brown, green) {
@@ -106,63 +109,22 @@ function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 // Get info for tracker
-let ancientsDataClone;
-function getStages(event, data) {
-  // ПЕРЕПИСАТЬ
-  ancientsDataClone = JSON.parse(JSON.stringify(data));
-  if (event.target.classList.contains('ancienst__card-first')) {
-    // First
-    stageOneGreenDot.textContent = `${ancientsDataClone[0].firstStage.greenCards}`;
-    stageOneBrownDot.textContent = `${ancientsDataClone[0].firstStage.brownCards}`;
-    stageOneBlueDot.textContent = `${ancientsDataClone[0].firstStage.blueCards}`;
-    // Second
-    stageTwoGreenDot.textContent = `${ancientsDataClone[0].secondStage.greenCards}`;
-    stageTwoBrownDot.textContent = `${ancientsDataClone[0].secondStage.brownCards}`;
-    stageTwoBlueDot.textContent = `${ancientsDataClone[0].secondStage.blueCards}`;
-    // Therd
-    stageThreeGreenDot.textContent = `${ancientsDataClone[0].thirdStage.greenCards}`;
-    stageThreeBrownDot.textContent = `${ancientsDataClone[0].thirdStage.brownCards}`;
-    stageThreeBlueDot.textContent = `${ancientsDataClone[0].thirdStage.blueCards}`;
-  } else if (event.target.classList.contains('ancienst__card-second')) {
-    // First
-    stageOneGreenDot.textContent = `${ancientsDataClone[1].firstStage.greenCards}`;
-    stageOneBrownDot.textContent = `${ancientsDataClone[1].firstStage.brownCards}`;
-    stageOneBlueDot.textContent = `${ancientsDataClone[1].firstStage.blueCards}`;
-    // Second
-    stageTwoGreenDot.textContent = `${ancientsDataClone[1].secondStage.greenCards}`;
-    stageTwoBrownDot.textContent = `${ancientsDataClone[1].secondStage.brownCards}`;
-    stageTwoBlueDot.textContent = `${ancientsDataClone[1].secondStage.blueCards}`;
-    // Therd
-    stageThreeGreenDot.textContent = `${ancientsDataClone[1].thirdStage.greenCards}`;
-    stageThreeBrownDot.textContent = `${ancientsDataClone[1].thirdStage.brownCards}`;
-    stageThreeBlueDot.textContent = `${ancientsDataClone[1].thirdStage.blueCards}`;
-  } else if (event.target.classList.contains('ancienst__card-therd')) {
-    // First
-    stageOneGreenDot.textContent = `${ancientsDataClone[2].firstStage.greenCards}`;
-    stageOneBrownDot.textContent = `${ancientsDataClone[2].firstStage.brownCards}`;
-    stageOneBlueDot.textContent = `${ancientsDataClone[2].firstStage.blueCards}`;
-    // Second
-    stageTwoGreenDot.textContent = `${ancientsDataClone[2].secondStage.greenCards}`;
-    stageTwoBrownDot.textContent = `${ancientsDataClone[2].secondStage.brownCards}`;
-    stageTwoBlueDot.textContent = `${ancientsDataClone[2].secondStage.blueCards}`;
-    // Therd
-    stageThreeGreenDot.textContent = `${ancientsDataClone[2].thirdStage.greenCards}`;
-    stageThreeBrownDot.textContent = `${ancientsDataClone[2].thirdStage.brownCards}`;
-    stageThreeBlueDot.textContent = `${ancientsDataClone[2].thirdStage.blueCards}`;
-  } else if (event.target.classList.contains('ancienst__card-fourth')) {
-    // First
-    stageOneGreenDot.textContent = `${ancientsDataClone[3].firstStage.greenCards}`;
-    stageOneBrownDot.textContent = `${ancientsDataClone[3].firstStage.brownCards}`;
-    stageOneBlueDot.textContent = `${ancientsDataClone[3].firstStage.blueCards}`;
-    // Second
-    stageTwoGreenDot.textContent = `${ancientsDataClone[3].secondStage.greenCards}`;
-    stageTwoBrownDot.textContent = `${ancientsDataClone[3].secondStage.brownCards}`;
-    stageTwoBlueDot.textContent = `${ancientsDataClone[3].secondStage.blueCards}`;
-    // Therd
-    stageThreeGreenDot.textContent = `${ancientsDataClone[3].thirdStage.greenCards}`;
-    stageThreeBrownDot.textContent = `${ancientsDataClone[3].thirdStage.brownCards}`;
-    stageThreeBlueDot.textContent = `${ancientsDataClone[3].thirdStage.blueCards}`;
-  }
+function getStages(data, selectedAncient) {
+  currentAncient = selectedAncient;
+  let ancient = data.filter((el) => el.id === `${selectedAncient}`);
+  nameAncient.textContent = ancient[0].name;
+  // Set first stage
+  firstStage.children[0].textContent = ancient[0].firstStage.greenCards;
+  firstStage.children[1].textContent = ancient[0].firstStage.brownCards;
+  firstStage.children[2].textContent = ancient[0].firstStage.blueCards;
+  // Set second stage
+  secondStage.children[0].textContent = ancient[0].secondStage.greenCards;
+  secondStage.children[1].textContent = ancient[0].secondStage.brownCards;
+  secondStage.children[2].textContent = ancient[0].secondStage.blueCards;
+  // Set third stage
+  thirdStage.children[0].textContent = ancient[0].thirdStage.greenCards;
+  thirdStage.children[1].textContent = ancient[0].thirdStage.brownCards;
+  thirdStage.children[2].textContent = ancient[0].thirdStage.blueCards;
 }
 // Get random number
 function getRandomNum(maxValue) {
@@ -170,35 +132,79 @@ function getRandomNum(maxValue) {
 }
 // Set tracker vars on click
 ancientsWrapper.addEventListener('click', (e) => {
-  getStages(e, ancientsData);
-  if (e.target.classList.contains('ancienst__card-first')) {
+  difficultyBtnsWrapper.style.visibility = 'visible';
+
+  let target = e.target.id;
+
+  setFirstStage(ancientsData, sortedCards[1], target);
+  setSecondStage(ancientsData, sortedCards[1], target);
+  setThirdStage(ancientsData, sortedCards[1], target);
+  console.log(doneDeck);
+
+  if (target === 'azathoth') {
+    getStages(ancientsData, target);
+    // Toggle active style
+    azathoth.classList.add('ancienst__card-active');
+    cthulhu.classList.remove('ancienst__card-active');
+    iogSothoth.classList.remove('ancienst__card-active');
+    shubNiggurath.classList.remove('ancienst__card-active');
+  } else if (target === 'cthulhu') {
+    getStages(ancientsData, target);
+    // Toggle active style
+    azathoth.classList.remove('ancienst__ancienst__card-active');
+    cthulhu.classList.add('ancienst__card-active');
+    iogSothoth.classList.remove('ancienst__card-active');
+    shubNiggurath.classList.remove('ancienst__card-active');
+  } else if (target === 'iogSothoth') {
+    getStages(ancientsData, target);
+    // Toggle active style
+    azathoth.classList.remove('ancienst__card-active');
+    cthulhu.classList.remove('ancienst__card-active');
+    iogSothoth.classList.add('ancienst__card-active');
+    shubNiggurath.classList.remove('ancienst__card-active');
+  } else if (target === 'shubNiggurath') {
+    getStages(ancientsData, target);
+    // Toggle active style
+    azathoth.classList.remove('ancienst__card-active');
+    cthulhu.classList.remove('ancienst__card-active');
+    iogSothoth.classList.remove('ancienst__card-active');
+    shubNiggurath.classList.add('ancienst__card-active');
   }
 });
 
-// Done deck!
-let doneDeck = {
-  firstStage: shuffleArray(firstStageAzatoth(ancientsData, sortedCards[1])),
-  secondStage: shuffleArray(secondStageAzatoth(ancientsData, sortedCards[1])),
-  therdStage: shuffleArray(therdStageAzatoth(ancientsData, sortedCards[1])),
-};
+let currentAncient = '';
+
 // Prepare stages
-function firstStageAzatoth(tarckerData, shuffleDeck) {
+function setFirstStage(tarckerData, shuffleDeck, currAnc) {
+  let currIndex = 0;
+  if (currAnc === 'azathoth') {
+    currIndex = 0;
+  } else if (currAnc === 'cthulhu') {
+    currIndex = 1;
+  } else if (currAnc === 'iogSothoth') {
+    currIndex = 2;
+  } else if (currAnc === 'shubNiggurath') {
+    currIndex = 3;
+  }
   // How much curds we needed for first stage
   // Green Cards
-  let firstStageGreenCardsMaxVal = tarckerData[0].firstStage.greenCards;
-  let firstStageGreenCardsDeck = shuffleDeck.shuffleColorCards.green.splice(
-    -firstStageGreenCardsMaxVal
-  );
+  let firstStageGreenCardsMaxVal = tarckerData[currIndex].firstStage.greenCards;
+  let firstStageGreenCardsDeck =
+    firstStageGreenCardsMaxVal === 0
+      ? shuffleDeck.shuffleColorCards.green.splice()
+      : shuffleDeck.shuffleColorCards.green.splice(-firstStageGreenCardsMaxVal);
   // Brown Cards
-  let firstStageBrownCardsMaxVal = tarckerData[0].firstStage.brownCards;
-  let firstStageBrownCardsDeck = shuffleDeck.shuffleColorCards.brown.splice(
-    -firstStageBrownCardsMaxVal
-  );
+  let firstStageBrownCardsMaxVal = tarckerData[currIndex].firstStage.brownCards;
+  let firstStageBrownCardsDeck =
+    firstStageBrownCardsMaxVal === 0
+      ? shuffleDeck.shuffleColorCards.brown.splice()
+      : shuffleDeck.shuffleColorCards.brown.splice(-firstStageBrownCardsMaxVal);
   // Blue Cards
-  let firstStageBlueCardsMaxVal = tarckerData[0].firstStage.blueCards;
-  let firstStageBlueCardsDeck = shuffleDeck.shuffleColorCards.blue.splice(
-    -firstStageBlueCardsMaxVal
-  );
+  let firstStageBlueCardsMaxVal = tarckerData[currIndex].firstStage.blueCards;
+  let firstStageBlueCardsDeck =
+    firstStageBlueCardsMaxVal === 0
+      ? shuffleDeck.shuffleColorCards.blue.splice()
+      : shuffleDeck.shuffleColorCards.blue.splice(-firstStageBlueCardsMaxVal);
 
   let firstStageDeck = [
     ...firstStageGreenCardsDeck,
@@ -206,25 +212,38 @@ function firstStageAzatoth(tarckerData, shuffleDeck) {
     ...firstStageBlueCardsDeck,
   ];
 
-  return firstStageDeck;
+  return (doneDeck.firstStage = shuffleArray(firstStageDeck));
 }
-function secondStageAzatoth(tarckerData, shuffleDeck) {
+function setSecondStage(tarckerData, shuffleDeck, currAnc) {
+  let currIndex = 0;
+  if (currAnc === 'azathoth') {
+    currIndex = 0;
+  } else if (currAnc === 'cthulhu') {
+    currIndex = 1;
+  } else if (currAnc === 'iogSothoth') {
+    currIndex = 2;
+  } else if (currAnc === 'shubNiggurath') {
+    currIndex = 3;
+  }
   // How much curds we needed for first stage
   // Green Cards
-  let greenCardsMaxVal = tarckerData[0].secondStage.greenCards;
-  let greenCardsDeck = shuffleDeck.shuffleColorCards.green.splice(
-    -greenCardsMaxVal
-  );
+  let greenCardsMaxVal = tarckerData[currIndex].secondStage.greenCards;
+  let greenCardsDeck =
+    greenCardsMaxVal === 0
+      ? shuffleDeck.shuffleColorCards.green.splice()
+      : shuffleDeck.shuffleColorCards.green.splice(-greenCardsMaxVal);
   // Brown Cards
-  let brownCardsMaxVal = tarckerData[0].secondStage.brownCards;
-  let brownCardsDeck = shuffleDeck.shuffleColorCards.brown.splice(
-    -brownCardsMaxVal
-  );
+  let brownCardsMaxVal = tarckerData[currIndex].secondStage.brownCards;
+  let brownCardsDeck =
+    brownCardsMaxVal === 0
+      ? shuffleDeck.shuffleColorCards.brown.splice()
+      : shuffleDeck.shuffleColorCards.brown.splice(-brownCardsMaxVal);
   // Blue Cards
-  let blueCardsMaxVal = tarckerData[0].secondStage.blueCards;
-  let blueCardsDeck = shuffleDeck.shuffleColorCards.blue.splice(
-    -blueCardsMaxVal
-  );
+  let blueCardsMaxVal = tarckerData[currIndex].secondStage.blueCards;
+  let blueCardsDeck =
+    blueCardsMaxVal === 0
+      ? shuffleDeck.shuffleColorCards.blue.splice()
+      : shuffleDeck.shuffleColorCards.blue.splice(-blueCardsMaxVal);
 
   let secondStageDeck = [
     ...greenCardsDeck,
@@ -232,73 +251,118 @@ function secondStageAzatoth(tarckerData, shuffleDeck) {
     ...blueCardsDeck,
   ];
 
-  return secondStageDeck;
+  return (doneDeck.secondStage = shuffleArray(secondStageDeck));
 }
-function therdStageAzatoth(tarckerData, shuffleDeck) {
+function setThirdStage(tarckerData, shuffleDeck, currAnc) {
+  let currIndex = 0;
+  if (currAnc === 'azathoth') {
+    currIndex = 0;
+  } else if (currAnc === 'cthulhu') {
+    currIndex = 1;
+  } else if (currAnc === 'iogSothoth') {
+    currIndex = 2;
+  } else if (currAnc === 'shubNiggurath') {
+    currIndex = 3;
+  }
   // How much curds we needed for first stage
   // Green Cards
-  let greenCardsMaxVal = tarckerData[0].thirdStage.greenCards;
-  let greenCardsDeck = shuffleDeck.shuffleColorCards.green.splice(
-    -greenCardsMaxVal
-  );
+  let greenCardsMaxVal = tarckerData[currIndex].thirdStage.greenCards;
+  let greenCardsDeck =
+    greenCardsMaxVal === 0
+      ? shuffleDeck.shuffleColorCards.green.splice()
+      : shuffleDeck.shuffleColorCards.green.splice(-greenCardsMaxVal);
   // Brown Cards
-  let brownCardsMaxVal = tarckerData[0].thirdStage.brownCards;
-  let brownCardsDeck = shuffleDeck.shuffleColorCards.brown.splice(
-    -brownCardsMaxVal
-  );
+  let brownCardsMaxVal = tarckerData[currIndex].thirdStage.brownCards;
+  let brownCardsDeck =
+    brownCardsMaxVal === 0
+      ? shuffleDeck.shuffleColorCards.brown.splice()
+      : shuffleDeck.shuffleColorCards.brown.splice(-brownCardsMaxVal);
   // Blue Cards
-  let blueCardsMaxVal = tarckerData[0].thirdStage.blueCards;
+  let blueCardsMaxVal = tarckerData[currIndex].thirdStage.blueCards;
   let blueCardsDeck =
     blueCardsMaxVal === 0
       ? shuffleDeck.shuffleColorCards.blue.splice()
       : shuffleDeck.shuffleColorCards.blue.splice(-blueCardsMaxVal);
-  // console.log('Max laues');
-  // console.log(greenCardsMaxVal, brownCardsMaxVal, blueCardsMaxVal);
-  // console.log('Decks');
-  // console.log(greenCardsDeck, brownCardsDeck, blueCardsDeck);
+
   let therdStageDeck = [...greenCardsDeck, ...brownCardsDeck, ...blueCardsDeck];
 
-  return therdStageDeck;
+  return (doneDeck.thirdStage = shuffleArray(therdStageDeck));
 }
 
-let concatMiniDeck = [
-  ...doneDeck.firstStage,
-  ...doneDeck.secondStage,
-  ...doneDeck.therdStage,
-].reverse();
+let concatMiniDeck;
+
 let lastCardMiniDeck;
-function getLastCard(miniDeck, dataClone) {
-  lastCardMiniDeck = miniDeck.pop();
-  const minusFirstTracker = () => {
-    // Функция, которая отрабоатет после конца первого этапа
-  };
-  if (lastCardMiniDeck.color === 'green' && stageOneGreenDot.textContent != 0) {
-    stageOneGreenDot.textContent -= 1
-    if (stageOneGreenDot.textContent === 0) console.log('ZERO');
-  } else if (
-    lastCardMiniDeck.color === 'brown' &&
-    stageOneBrownDot.textContent != 0 // !!! Сделать внешний массив со значениями трекера поэтапно и минусовать значения и выводить их уже от туда???
-  ) {
-    stageOneBrownDot.textContent -= 1; // Необходимо решить проблему отсчёта суммы карт в декере на каждом этапеэ
-  } else if (
-    lastCardMiniDeck.color === 'blue' &&
-    stageOneBlueDot.textContent != 0
-  ) {
-    stageOneBlueDot.textContent -= 1;
+
+let trackerData = [];
+/////////////////////////////////////////////////////////////
+const createDataForTracker = (dataAnc, currAnc) => {
+  let currentIndex = 0;
+  if (currAnc === 'azathoth') currentIndex = 0;
+  if (currAnc === 'cthulhu') currentIndex = 1;
+  if (currAnc === 'iogSothoth') currentIndex = 2;
+  if (currAnc === 'shubNiggurath') currentIndex = 3;
+
+  trackerData = [
+    [
+      parseInt(dataAnc[currentIndex].firstStage.greenCards, 10),
+      parseInt(dataAnc[currentIndex].firstStage.brownCards, 10),
+      parseInt(dataAnc[currentIndex].firstStage.blueCards, 10),
+    ],
+    [
+      parseInt(dataAnc[currentIndex].secondStage.greenCards, 10),
+      parseInt(dataAnc[currentIndex].secondStage.brownCards, 10),
+      parseInt(dataAnc[currentIndex].secondStage.blueCards, 10),
+    ],
+    [
+      parseInt(dataAnc[currentIndex].thirdStage.greenCards, 10),
+      parseInt(dataAnc[currentIndex].thirdStage.brownCards, 10),
+      parseInt(dataAnc[currentIndex].thirdStage.blueCards, 10),
+    ],
+  ];
+};
+
+const minusCardsFromDacker = (tData, cardColor) => {
+  if (cardColor === 'green') {
+    firstStage.children[0].textContent = tData[0][0] -= 1;
   }
-  lastCardMiniDeck === undefined
-    ? (deck.style.backgroundImage = 'url()')
+  if (cardColor === 'brown') {
+    firstStage.children[1].textContent = tData[0][1] -= 1;
+  }
+  if (cardColor === 'blue') {
+    firstStage.children[2].textContent = tData[0][2] -= 1;
+  }
+};
+///////////////////////////////////////////////////////////////////////////
+function getLastCard(miniDeck) {
+  lastCardMiniDeck = miniDeck.pop();
+  colorLastCard = lastCardMiniDeck.color;
+  console.log(lastCardMiniDeck.color);
+  lastCardMiniDeck === undefined 
+    ? (deck.style.opacity = '0.6')
     : (lastCard.style.backgroundImage = `url(${lastCardMiniDeck.cardFace})`);
-  console.log(lastCardMiniDeck.cardFace);
 }
 
-function minusCardsTracker(data) {
-  console.log(data);
-}
-
-deck.addEventListener('click', () => {
-  getLastCard(concatMiniDeck, ancientsDataClone);
-  // minusCardsTracker(ancientsDataClone)
+mixDeck.addEventListener('click', () => {
+  createDataForTracker(ancientsData, currentAncient);
+  return (concatMiniDeck = [
+    ...doneDeck.firstStage,
+    ...doneDeck.secondStage,
+    ...doneDeck.thirdStage,
+  ].reverse());
 });
 
-getAncient(ancients);
+deck.addEventListener('click', () => {
+  getLastCard(concatMiniDeck);
+  minusCardsFromDacker(trackerData, colorLastCard);
+  console.log(trackerData);
+});
+
+difficultyBtnsWrapper.addEventListener('click', () => {
+  shuffleBtnWrapper.style.visibility = 'visible';
+});
+
+shuffleBtnWrapper.addEventListener('click', () => {
+  deckWrapper.style.visibility = 'visible';
+});
+
+renderAncient(ancients);
