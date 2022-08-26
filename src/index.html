@@ -9,10 +9,10 @@
   <body>
     <div class="container">
       <div class="ancienst-wrapper">
-        <div class="ancienst__card ancienst__card-first"></div>
-        <div class="ancienst__card ancienst__card-second"></div>
-        <div class="ancienst__card ancienst__card-therd"></div>
-        <div class="ancienst__card ancienst__card-fourth"></div>
+        <div class="ancienst__card" id="azathoth"></div>
+        <div class="ancienst__card" id="cthulhu"></div>
+        <div class="ancienst__card" id="iogSothoth"></div>
+        <div class="ancienst__card" id="shubNiggurath"></div>
       </div>
       <div class="difficult-wrapper">
         <button class="difficult__btn btn difficult__btn-active" id="easy">
@@ -21,12 +21,14 @@
         <button class="difficult__btn btn" id="normal">Medium</button>
         <button class="difficult__btn btn" id="hard">Hard</button>
       </div>
-      <div class="deck-wrapper">
+      <div class="shuffle-wrapper">
         <button class="mix-deck btn">Shuffle the deck</button>
+      </div>
+      <div class="deck-wrapper">
         <div class="current-state">
           <div class="stage">
             <span class="stage-text">Firts stage</span>
-            <div class="dots">
+            <div class="dots first-stage">
               <div class="dot dot-stage1 dot-green" id="dot-stage1-green">
                 0
               </div>
@@ -38,7 +40,7 @@
           </div>
           <div class="stage">
             <span class="stage-text">Second stage</span>
-            <div class="dots">
+            <div class="dots second-stage">
               <div class="dot dot-stage2 dot-green" id="dot-stage2-green">
                 0
               </div>
@@ -50,7 +52,7 @@
           </div>
           <div class="stage">
             <span class="stage-text">Therd stage</span>
-            <div class="dots">
+            <div class="dots third-stage">
               <div class="dot dot-stage3 dot-green" id="dot-stage3-green">
                 0
               </div>
@@ -61,6 +63,7 @@
             </div>
           </div>
         </div>
+        <h2 class="name-ancient"></h2>
         <div class="cards-wrapper">
           <div class="deck"></div>
           <div class="last-card"></div>
