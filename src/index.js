@@ -64,7 +64,6 @@ function getStages(data, selectedAncient) {
 // Set tracker vars on click
 let currentTarget = '';
 ancientsWrapper.addEventListener('click', (e) => {
-
   difficultyBtnsWrapper.style.visibility = 'visible';
 
   currentTarget = e.target.id;
@@ -290,11 +289,24 @@ let currentDifficulty = '';
 
 function setDifficulty(e) {
   const id = e.target.id;
+  if (id === 'very-easy') return 'very-easy';
   if (id === 'easy') return 'easy';
   if (id === 'normal') return 'normal';
   if (id === 'hard') return 'hard';
+  if (id === 'very-hard') return 'very-hard';
 }
 
+function setVeryEasyMode(data) {
+  sortedCards[1].shuffleColorCards.blue = data.blue.filter(
+    (el) => el.difficulty === 'easy'
+  );
+  sortedCards[1].shuffleColorCards.brown = data.brown.filter(
+    (el) => el.difficulty !== 'hard' 
+  );
+  sortedCards[1].shuffleColorCards.green = data.green.filter(
+    (el) => el.difficulty === 'easy'
+  );
+}
 function setEasyMode(data) {
   sortedCards[1].shuffleColorCards.blue = data.blue.filter(
     (el) => el.difficulty !== 'hard'
@@ -315,6 +327,18 @@ function setHardMode(data) {
   );
   sortedCards[1].shuffleColorCards.green = data.green.filter(
     (el) => el.difficulty !== 'easy'
+  );
+  console.log(sortedCards[1].shuffleColorCards);
+}
+function setVeryHardMode(data) {
+  sortedCards[1].shuffleColorCards.blue = data.blue.filter(
+    (el) => el.difficulty === 'hard'
+  );
+  sortedCards[1].shuffleColorCards.brown = data.brown.filter(
+    (el) => el.difficulty !== 'easy'
+  );
+  sortedCards[1].shuffleColorCards.green = data.green.filter(
+    (el) => el.difficulty === 'hard'
   );
   console.log(sortedCards[1].shuffleColorCards);
 }
@@ -350,10 +374,14 @@ difficultyBtnsWrapper.addEventListener('click', (e) => {
   difficultyBtnsWrapper.style.visibility = 'hidden';
 
   currentDifficulty = setDifficulty(e);
+  if (currentDifficulty === 'very-easy')
+    setVeryEasyMode(sortedCards[1].shuffleColorCards);
   if (currentDifficulty === 'easy')
     setEasyMode(sortedCards[1].shuffleColorCards);
   if (currentDifficulty === 'hard')
     setHardMode(sortedCards[1].shuffleColorCards);
+  if (currentDifficulty === 'very-hard')
+    setVeryHardMode(sortedCards[1].shuffleColorCards);
   console.log(`Current difficulty: ${currentDifficulty}`);
   setFirstStage(ancientsData, sortedCards[1], currentTarget);
   setSecondStage(ancientsData, sortedCards[1], currentTarget);
