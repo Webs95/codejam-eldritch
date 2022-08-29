@@ -369,9 +369,9 @@ function getLastCard(miniDeck) {
   🎴 Cards in deck: ${miniDeck.length};
   🃏 Current card: ${lastCardMiniDeck.id} ${lastCardMiniDeck.difficulty};
   `);
-  miniDeck.length === 0
-    ? (deck.style.opacity = '0.5')
-    : (lastCard.style.backgroundImage = `url(${lastCardMiniDeck.cardFace})`);
+  console.log(lastCardMiniDeck)
+  lastCard.style.backgroundImage = `url(${lastCardMiniDeck.cardFace})`
+  if  (miniDeck.length === 0) deck.style.opacity = '0.5'
 }
 
 mixDeck.addEventListener('click', () => {
