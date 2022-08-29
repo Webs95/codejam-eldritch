@@ -1,5 +1,4 @@
 import './style.scss'; // import styles
-import ancients from './assets/Ancients/index';
 import ancientsData from './data/ancients';
 import cardsDataBlue from './data/mythicCards/blue';
 import cardsDataBrown from './data/mythicCards/brown';
@@ -14,15 +13,12 @@ const difficultyBtnsWrapper = document.querySelector('.difficult-wrapper');
 const shuffleBtnWrapper = document.querySelector('.shuffle-wrapper');
 const deckWrapper = document.querySelector('.deck-wrapper');
 const mixDeck = document.querySelector('.mix-deck');
+const restart = document.querySelector('.restart');
 // Stages Fathers
 const firstStage = document.querySelector('.first-stage');
 const secondStage = document.querySelector('.second-stage');
 const thirdStage = document.querySelector('.third-stage');
-// Ancients cards
-const azathoth = document.getElementById('azathoth');
-const cthulhu = document.getElementById('cthulhu');
-const iogSothoth = document.getElementById('iogSothoth');
-const shubNiggurath = document.getElementById('shubNiggurath');
+
 // Sort Cards
 const sortedCards = [
   {
@@ -53,13 +49,7 @@ let doneDeck = {
   thirdStage: [],
 };
 let colorLastCard = '';
-// Render ancients cards on page
-function renderAncient(data) {
-  azathoth.style.backgroundImage = `url(${data.azathoth})`;
-  cthulhu.style.backgroundImage = `url(${data.cthulhu})`;
-  iogSothoth.style.backgroundImage = `url(${data.iogSothoth})`;
-  shubNiggurath.style.backgroundImage = `url(${data.shubNiggurath})`;
-}
+
 // Sort the deck by Easy difficulty
 function sortCardsDifficultyEasy(blue, brown, green) {
   let easyCards = [];
@@ -139,36 +129,44 @@ ancientsWrapper.addEventListener('click', (e) => {
   setFirstStage(ancientsData, sortedCards[1], target);
   setSecondStage(ancientsData, sortedCards[1], target);
   setThirdStage(ancientsData, sortedCards[1], target);
+  console.log(`Current deck 👇`);
   console.log(doneDeck);
 
   if (target === 'azathoth') {
     getStages(ancientsData, target);
     // Toggle active style
-    // azathoth.classList.add('ancienst__card-active');
-    // cthulhu.classList.remove('ancienst__card-active');
-    // iogSothoth.classList.remove('ancienst__card-active');
-    // shubNiggurath.classList.remove('ancienst__card-active');
-  } else if (target === 'cthulhu') {
+    azathoth.classList.add('ancienst__card-active');
+    cthulhu.classList.remove('ancienst__card-active');
+    iogSothoth.classList.remove('ancienst__card-active');
+    shubNiggurath.classList.remove('ancienst__card-active');
+    return;
+  }
+  if (target === 'cthulhu') {
     getStages(ancientsData, target);
     // Toggle active style
-    // azathoth.classList.remove('ancienst__ancienst__card-active');
-    // cthulhu.classList.add('ancienst__card-active');
-    // iogSothoth.classList.remove('ancienst__card-active');
-    // shubNiggurath.classList.remove('ancienst__card-active');
-  } else if (target === 'iogSothoth') {
+    azathoth.classList.remove('ancienst__card-active');
+    cthulhu.classList.add('ancienst__card-active');
+    iogSothoth.classList.remove('ancienst__card-active');
+    shubNiggurath.classList.remove('ancienst__card-active');
+    return;
+  }
+  if (target === 'iogSothoth') {
     getStages(ancientsData, target);
     // Toggle active style
-    // azathoth.classList.remove('ancienst__card-active');
-    // cthulhu.classList.remove('ancienst__card-active');
-    // iogSothoth.classList.add('ancienst__card-active');
-    // shubNiggurath.classList.remove('ancienst__card-active');
-  } else if (target === 'shubNiggurath') {
+    azathoth.classList.remove('ancienst__card-active');
+    cthulhu.classList.remove('ancienst__card-active');
+    iogSothoth.classList.add('ancienst__card-active');
+    shubNiggurath.classList.remove('ancienst__card-active');
+    return;
+  }
+  if (target === 'shubNiggurath') {
     getStages(ancientsData, target);
     // Toggle active style
-    // azathoth.classList.remove('ancienst__card-active');
-    // cthulhu.classList.remove('ancienst__card-active');
-    // iogSothoth.classList.remove('ancienst__card-active');
-    // shubNiggurath.classList.add('ancienst__card-active');
+    azathoth.classList.remove('ancienst__card-active');
+    cthulhu.classList.remove('ancienst__card-active');
+    iogSothoth.classList.remove('ancienst__card-active');
+    shubNiggurath.classList.add('ancienst__card-active');
+    return;
   }
 });
 
@@ -294,8 +292,8 @@ let concatMiniDeck;
 let lastCardMiniDeck;
 
 let trackerData = [];
-/////////////////////////////////////////////////////////////
-const createDataForTracker = (dataAnc, currAnc) => {
+
+function createDataForTracker(dataAnc, currAnc) {
   let currentIndex = 0;
   if (currAnc === 'azathoth') currentIndex = 0;
   if (currAnc === 'cthulhu') currentIndex = 1;
@@ -319,25 +317,46 @@ const createDataForTracker = (dataAnc, currAnc) => {
       parseInt(dataAnc[currentIndex].thirdStage.blueCards, 10),
     ],
   ];
-};
+}
 
-const minusCardsFromDacker = (tData, cardColor = '') => {
-  if (cardColor === 'green') {
-    firstStage.children[0].textContent = tData[0][0] -= 1;
+let indexOftData = 0;
+
+function minusCardsFromDacker(tData, cardColor = '') {
+  let stage = firstStage;
+  let sum = 0;
+
+  tData[indexOftData].forEach((num) => (sum += num));
+
+  if (sum === 0) {
+    indexOftData += 1;
+
+    tData[indexOftData].forEach((num) => {
+      sum += num;
+    });
   }
-  if (cardColor === 'brown') {
-    firstStage.children[1].textContent = tData[0][1] -= 1;  // <---= LOOK AT THIS SHIT!!!!!
-  }
-  if (cardColor === 'blue') {
-    firstStage.children[2].textContent = tData[0][2] -= 1;
-  }
-};
-///////////////////////////////////////////////////////////////////////////
+
+  if (indexOftData === 1) stage = secondStage;
+
+  if (indexOftData === 2) stage = thirdStage;
+
+  if (cardColor === 'green')
+    stage.children[0].textContent = tData[indexOftData][0] -= 1;
+
+  if (cardColor === 'brown')
+    stage.children[1].textContent = tData[indexOftData][1] -= 1;
+
+  if (cardColor === 'blue')
+    stage.children[2].textContent = tData[indexOftData][2] -= 1;
+}
+
 function getLastCard(miniDeck) {
   lastCardMiniDeck = miniDeck.pop();
   colorLastCard = lastCardMiniDeck.color;
-  // console.log(lastCardMiniDeck.color);
-  lastCardMiniDeck.color === undefined
+  console.log(`
+  🎴 Cards in deck: ${miniDeck.length};
+  🃏 Current card: ${lastCardMiniDeck.id} ${lastCardMiniDeck.difficulty};
+  `);
+  miniDeck.length === 0
     ? (deck.style.opacity = '0.5')
     : (lastCard.style.backgroundImage = `url(${lastCardMiniDeck.cardFace})`);
 }
@@ -354,15 +373,17 @@ mixDeck.addEventListener('click', () => {
 deck.addEventListener('click', () => {
   getLastCard(concatMiniDeck);
   minusCardsFromDacker(trackerData, colorLastCard);
-  console.log(trackerData);
 });
 
 difficultyBtnsWrapper.addEventListener('click', () => {
   shuffleBtnWrapper.style.visibility = 'visible';
 });
 
-shuffleBtnWrapper.addEventListener('click', () => {
-  deckWrapper.style.visibility = 'visible';
-});
+restart.addEventListener('click', () => window.location.reload());
 
-renderAncient(ancients);
+shuffleBtnWrapper.addEventListener('click', () => {
+  difficultyBtnsWrapper.style = 'hidden';
+  shuffleBtnWrapper.style = 'hidden';
+  deckWrapper.style.visibility = 'visible';
+  restart.style.visibility = 'visible';
+});
