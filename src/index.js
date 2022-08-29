@@ -14,10 +14,25 @@ const shuffleBtnWrapper = document.querySelector('.shuffle-wrapper');
 const deckWrapper = document.querySelector('.deck-wrapper');
 const mixDeck = document.querySelector('.mix-deck');
 const restart = document.querySelector('.restart');
+const mute = document.querySelector('.mute');
+
 // Stages Fathers
 const firstStage = document.querySelector('.first-stage');
 const secondStage = document.querySelector('.second-stage');
 const thirdStage = document.querySelector('.third-stage');
+
+// Music;
+const audio = new Audio(
+  'https://github.com/Webs95/assets/raw/main/assets/bezyshodnost-muzyka-horror-muzyka.mp3'
+);
+function startMusic(track) {
+  track.play();
+  track.volume = 0.3;
+}
+
+startMusic(audio)
+audio.addEventListener('ended', () => startMusic(audio))
+mute.addEventListener('click', () => audio.pause())
 
 console.log(`
 ✅ Оценка работы: 100/100 
@@ -374,18 +389,24 @@ deck.addEventListener('click', () => {
 });
 
 difficultyBtnsWrapper.addEventListener('click', (e) => {
-  shuffleBtnWrapper.style.visibility = 'visible';
-  difficultyBtnsWrapper.style.visibility = 'hidden';
 
   currentDifficulty = setDifficulty(e);
   if (currentDifficulty === 'very-easy')
     setVeryEasyMode(sortedCards[1].shuffleColorCards);
+    shuffleBtnWrapper.style.visibility = 'visible';
+    difficultyBtnsWrapper.style.visibility = 'hidden';
   if (currentDifficulty === 'easy')
     setEasyMode(sortedCards[1].shuffleColorCards);
+    shuffleBtnWrapper.style.visibility = 'visible';
+    difficultyBtnsWrapper.style.visibility = 'hidden';
   if (currentDifficulty === 'hard')
     setHardMode(sortedCards[1].shuffleColorCards);
+    shuffleBtnWrapper.style.visibility = 'visible';
+    difficultyBtnsWrapper.style.visibility = 'hidden';
   if (currentDifficulty === 'very-hard')
     setVeryHardMode(sortedCards[1].shuffleColorCards);
+    shuffleBtnWrapper.style.visibility = 'visible';
+    difficultyBtnsWrapper.style.visibility = 'hidden';
   console.log(`Current difficulty: ${currentDifficulty}`);
   setFirstStage(ancientsData, sortedCards[1], currentTarget);
   setSecondStage(ancientsData, sortedCards[1], currentTarget);
@@ -395,7 +416,6 @@ difficultyBtnsWrapper.addEventListener('click', (e) => {
 restart.addEventListener('click', () => window.location.reload());
 
 shuffleBtnWrapper.addEventListener('click', () => {
-  difficultyBtnsWrapper.style.visibility = 'hidden';
   shuffleBtnWrapper.style.visibility = 'hidden';
   deckWrapper.style.visibility = 'visible';
   restart.style.visibility = 'visible';
