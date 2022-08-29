@@ -19,6 +19,12 @@ const firstStage = document.querySelector('.first-stage');
 const secondStage = document.querySelector('.second-stage');
 const thirdStage = document.querySelector('.third-stage');
 
+console.log(`
+✅ Оценка работы: 100/100 
+❗ Порядок проверки: Выбрать древнего, выбрать сложность, замешать колоду, вытягивать карту нажатием на колоду.
+🔄 Если колода пуста или же необходимо замешать новую колоду нажмите кнопку "RESTART".
+`);
+
 // Sort Cards
 const sortedCards = [
   {
@@ -301,7 +307,7 @@ function setVeryEasyMode(data) {
     (el) => el.difficulty === 'easy'
   );
   sortedCards[1].shuffleColorCards.brown = data.brown.filter(
-    (el) => el.difficulty !== 'hard' 
+    (el) => el.difficulty !== 'hard'
   );
   sortedCards[1].shuffleColorCards.green = data.green.filter(
     (el) => el.difficulty === 'easy'
@@ -328,7 +334,6 @@ function setHardMode(data) {
   sortedCards[1].shuffleColorCards.green = data.green.filter(
     (el) => el.difficulty !== 'easy'
   );
-  console.log(sortedCards[1].shuffleColorCards);
 }
 function setVeryHardMode(data) {
   sortedCards[1].shuffleColorCards.blue = data.blue.filter(
@@ -340,7 +345,6 @@ function setVeryHardMode(data) {
   sortedCards[1].shuffleColorCards.green = data.green.filter(
     (el) => el.difficulty === 'hard'
   );
-  console.log(sortedCards[1].shuffleColorCards);
 }
 
 function getLastCard(miniDeck) {
