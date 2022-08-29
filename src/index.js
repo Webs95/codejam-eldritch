@@ -22,17 +22,7 @@ const thirdStage = document.querySelector('.third-stage');
 // Sort Cards
 const sortedCards = [
   {
-    difficultyCards: {
-      easy: shuffleArray(
-        sortCardsDifficultyEasy(cardsDataBlue, cardsDataBrown, cardsDataGreen)
-      ),
-      medium: shuffleArray(
-        sortCardsDifficultyMedium(cardsDataBlue, cardsDataBrown, cardsDataGreen)
-      ),
-      hard: shuffleArray(
-        sortCardsDifficultyHard(cardsDataBlue, cardsDataBrown, cardsDataGreen)
-      ),
-    },
+    difficultyCards: {},
   },
   {
     shuffleColorCards: {
@@ -49,51 +39,6 @@ let doneDeck = {
   thirdStage: [],
 };
 let colorLastCard = '';
-
-// Sort the deck by Easy difficulty
-function sortCardsDifficultyEasy(blue, brown, green) {
-  let easyCards = [];
-
-  blue.map((el) => {
-    if (el.difficulty === 'easy') easyCards.push(el);
-  });
-  brown.map((el) => {
-    if (el.difficulty === 'easy') easyCards.push(el);
-  });
-  green.map((el) => {
-    if (el.difficulty === 'easy') easyCards.push(el);
-  });
-  return easyCards;
-}
-// Sort the deck by Medium difficulty
-function sortCardsDifficultyMedium(blue, brown, green) {
-  let mediumCards = [];
-  blue.map((el) => {
-    if (el.difficulty === 'normal') mediumCards.push(el);
-  });
-  brown.map((el) => {
-    if (el.difficulty === 'normal') mediumCards.push(el);
-  });
-  green.map((el) => {
-    if (el.difficulty === 'normal') mediumCards.push(el);
-  });
-  return mediumCards;
-}
-// Sort the deck by Hard difficulty
-function sortCardsDifficultyHard(blue, brown, green) {
-  let hardCards = [];
-
-  blue.map((el) => {
-    if (el.difficulty === 'hard') hardCards.push(el);
-  });
-  brown.map((el) => {
-    if (el.difficulty === 'hard') hardCards.push(el);
-  });
-  green.map((el) => {
-    if (el.difficulty === 'hard') hardCards.push(el);
-  });
-  return hardCards;
-}
 // Shuffle the deck
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
@@ -119,9 +64,8 @@ function getStages(data, selectedAncient) {
 // Set tracker vars on click
 let currentTarget = '';
 ancientsWrapper.addEventListener('click', (e) => {
-  // restart.style.visibility === 'visible'
-     (difficultyBtnsWrapper.style.visibility = 'visible')
-  //   : (difficultyBtnsWrapper.style.visibility = 'hidden');
+
+  difficultyBtnsWrapper.style.visibility = 'visible';
 
   currentTarget = e.target.id;
 
@@ -410,7 +354,7 @@ difficultyBtnsWrapper.addEventListener('click', (e) => {
     setEasyMode(sortedCards[1].shuffleColorCards);
   if (currentDifficulty === 'hard')
     setHardMode(sortedCards[1].shuffleColorCards);
-  console.log(`Current difficulty: ${currentDifficulty}` );
+  console.log(`Current difficulty: ${currentDifficulty}`);
   setFirstStage(ancientsData, sortedCards[1], currentTarget);
   setSecondStage(ancientsData, sortedCards[1], currentTarget);
   setThirdStage(ancientsData, sortedCards[1], currentTarget);
