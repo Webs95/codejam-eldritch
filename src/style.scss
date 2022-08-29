@@ -79,6 +79,7 @@ html {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  transition: visibility 0.3s ease;
 }
 
 .deck-wrapper {
@@ -88,6 +89,7 @@ html {
   align-items: center;
   width: 30%;
   gap: 77px;
+  transition: visibility 0.3s ease;
 }
 
 .shuffle-wrapper {
