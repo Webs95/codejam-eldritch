@@ -1,11 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
 
 @mixin deck {
-  width: 18vw;
-  height: 40vh;
-  background-position: 50%;
-  background-size: contain;
-  background-repeat: no-repeat;
+  min-width: 201px;
+  min-height: 297px;
   border-radius: 10px;
   transition: all .3s ease;
   &:hover {
@@ -46,14 +43,12 @@ html {
   grid-template-columns: repeat(2, 1fr);
   grid-row-gap: 1.3rem;
   grid-column-gap: 1.3rem;
+  align-content: center; 
+  justify-items: center; 
+  align-items: center; 
 }
 
 .ancienst__card {
-  width: 18vw;
-  height: 40vh;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: contain;
   border-radius: 10px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -64,6 +59,19 @@ html {
   &:hover {
     transform: scale(1.03);
   }
+}
+
+.ancient-img {
+  max-width: 289px;
+  max-height: 384px;
+  border-radius: 10px;
+}
+
+.btns-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .difficult-wrapper {
@@ -78,17 +86,27 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 30%;
   gap: 77px;
 }
 
 .shuffle-wrapper {
   visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .current-state {
+  padding: 15px;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.404);
   flex-direction: column;
   gap: 10px;
+  border-radius: 10px;
 }
 
 .stage {
@@ -100,6 +118,8 @@ html {
 
 .dots {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
   .dot {
     display: flex;
@@ -133,19 +153,31 @@ html {
   }
 }
 
+.restart {
+  font-weight: bold;
+  color: red;
+  visibility: hidden;
+}
+
 .cards-wrapper {
   display: flex;
   justify-content: space-between;
-  gap: 5px;
+  gap: 13px;
 }
 
 .deck {
   @include deck;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
   background-image: url(./assets/mythicCardBackground.jpg);
   cursor: pointer;
 }
 
 .last-card {
   @include deck;
-  background-image: url(./assets/mythicCardBackground.jpg);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url();
 }
